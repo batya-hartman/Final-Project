@@ -1,0 +1,34 @@
+<div style="padding: 20px;" class="login-box">
+    <h2>Register <span (click)="goLogin()" class="link">login</span></h2>
+    <form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="user-box">
+            <input type="text" formControlName="firstName" name="FirstName">
+            <label>First Name</label>
+        </div>
+        <div class="user-box">
+            <input type="text" formControlName="lastName" name="LastName">
+            <label>Last Name</label>
+        </div>
+        <div class="user-box">
+            <input type="text" formControlName="email" name="Email">
+            <label>Email</label>
+        </div>
+        <div class="user-box">
+            <input type="password" formControlName="password" name="Password">
+            <label>Password</label>
+        </div>
+        <div class="user-box">
+            <input type="password" formControlName="confirmPassword" name="confirmPassword">
+            <label>Password</label>
+        </div>
+        <button type="submit" [disabled]="!registerForm.valid">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+        </button>
+
+    </form>
+    <span style="color: azure;">{{message}}</span>
+</div>
