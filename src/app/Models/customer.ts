@@ -1,7 +1,7 @@
 export interface Customer {
-    email: string,
     firstName: string,
     lastName: string,
+    email: string,
     openDate: Date,
     balance: number
 }

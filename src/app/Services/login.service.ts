@@ -4,6 +4,7 @@ import { Customer } from '../Models/customer';
 import { Observable } from 'rxjs';
 import { register } from '../Models/register';
 import { login } from '../Models/login';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,9 +18,10 @@ export class LoginService {
     return
   }
     return this.http.get<number>
-      (`api/account?loginCustomer.email=${login.email}&loginCustomer.Password=${login.password}`)
+      (`${environment.basicURL}/api/account?loginCustomer.email=${login.email}&loginCustomer.password=${login.password}`)
   }
   register(newUser: register): Observable<boolean> {
-    return this.http.post<boolean>(`api/customer`, newUser)
+    debugger
+    return this.http.post<boolean>(`${environment.basicURL}/api/account`, newUser)
   }
 }

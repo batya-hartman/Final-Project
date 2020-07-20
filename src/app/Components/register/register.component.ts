@@ -16,11 +16,11 @@ export class RegisterComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router, private fb: FormBuilder) { }
 
   registerForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
+    firstName: new FormControl('aa', [Validators.required]),
+    lastName: new FormControl('aa', [Validators.required]),
+    email: new FormControl('aa@aa', [Validators.required, Validators.email]),
+    password: new FormControl('aaaaaa', [Validators.required, Validators.minLength(6)]),
+    confirmPassword: new FormControl('aaaaaa', [Validators.required, Validators.minLength(6)])
   })//,{ Validator: this.checkIfMatchingPasswords('Password', 'confirmPassword')})
 
   // registerForm = this.fb.group({
@@ -61,7 +61,7 @@ export class RegisterComponent implements OnInit {
     this.message = "Sending request...";
     this.loginService.register(newCustomer).subscribe(
       success => {
-        if (success == true) {
+        if (success === true) {
           this.message = "Register succes!"
           this.goLogin()
         }

@@ -34,8 +34,12 @@ export class LoginComponent implements OnInit {
         this.message = "Login succeded",
           sessionStorage.setItem("currentCustomer", success.toString()),
           this.router.navigate(['/accountDetails'])
-      },
-      error => { console.log(error), this.message = error.error.message }
+      }, 
+      error => {
+        if(error.status===401){
+         this.message = "Your email or password are not correct, try again or go register."} 
+         console.log(error)
+        }
     )
   }
   goRegister() {
