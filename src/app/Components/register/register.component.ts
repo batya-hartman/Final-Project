@@ -9,44 +9,23 @@ import { register } from '../../Models/register';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
 
   message: string = ""
 
   constructor(private loginService: LoginService, private router: Router, private fb: FormBuilder) { }
 
   registerForm = new FormGroup({
-    firstName: new FormControl('aa', [Validators.required]),
-    lastName: new FormControl('aa', [Validators.required]),
-    email: new FormControl('aa@aa', [Validators.required, Validators.email]),
-    password: new FormControl('aaaaaa', [Validators.required, Validators.minLength(6)]),
-    confirmPassword: new FormControl('aaaaaa', [Validators.required, Validators.minLength(6)])
-  })//,{ Validator: this.checkIfMatchingPasswords('Password', 'confirmPassword')})
-
-  // registerForm = this.fb.group({
-  //   firstName: ['', Validators.required],
-  //   lastName: ['', Validators.required],
-  //   title: ['', Validators.required],
-  //   email: ['', Validators.required],
-  //   password: ['', Validators.required],
-  //   confirmPassword: ['', Validators.required]
-  // }, { validator: this.checkIfMatchingPasswords('password', 'confirmPass') });
-
-  // checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
-  //   return (group: FormGroup) => {
-  //     let passwordInput = group.controls[passwordKey],
-  //       passwordConfirmationInput = group.controls[passwordConfirmationKey];
-  //     if (passwordInput.value !== passwordConfirmationInput.value) {
-  //       return passwordConfirmationInput.setErrors({ notEquivalent: true })
-  //     }
-  //     else {
-  //       return passwordConfirmationInput.setErrors(null);
-  //     }
-  //   }
-  // }
-
-  ngOnInit(): void {
-  }
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+    confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
+  })
+  public checkError = (controlName: string, errorName: string) => {
+    return this.registerForm.controls[controlName].hasError(errorName);
+  }  
+  
   confirmPassword(password: string, confirm: string) {
     return password === confirm;
   }

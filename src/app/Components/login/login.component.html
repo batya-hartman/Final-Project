@@ -1,41 +1,28 @@
 <div class="login-box">
   <h2>Login <span (click)="goRegister()" class="link">register</span></h2>
-
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-
-    <div class="user-box">
-      <input type="text" formControlName="email" name="email" #email>
-      <label>Email</label>
-      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-        {{email.errors}}kkkkkkkkkkk
-        <div *ngIf="email.errors.required">
-          email is required.
-        </div>
-        <div *ngIf="email.errors.email">
-          Not valid email address
-        </div>
+  <div style="margin-left:20px;">
+    <div class="example-container">
+      <form [formGroup]="loginForm"  (ngSubmit)="onSubmit()" class="example-form">
+        <p>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" >
+              <mat-error *ngIf="checkError('email', 'required')">email is required</mat-error>
+              <mat-error *ngIf="checkError('email', 'email')">Not valid email address</mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline" class="example-full-width">
+              <mat-label>Password</mat-label>
+              <input matInput formControlName="password" >
+              <mat-error *ngIf="checkError('password', 'required')">password is required</mat-error>
+              <mat-error *ngIf="checkError('password', 'minlength')">password must be at least 6 characters long</mat-error>
+            </mat-form-field>
+          </p>       
+        <button type="submit" [disabled]="!loginForm.valid" >Submit</button>
+      </form>
       </div>
     </div>
-    <div class="user-box">
-      <input type="password" formControlName="password" name="password" #password>
-      <label>Password</label>
-      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
-        <div *ngIf="password.errors.required">
-          password is required.
-        </div>
-        <div *ngIf="password.errors.minlength">
-          password must be at least 6 characters long.
-        </div>
-      </div>
-    </div>
-    <button type="submit" [disabled]="!loginForm.valid">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      Submit
-    </button>
-
-  </form>
+  
   <span style="color: azure;">{{message}}</span>
 </div>

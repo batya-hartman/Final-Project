@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './Components/register/register.component';
 import { AccountDetailsComponent } from './Components/account-details/account-details.component';
 import { LogOutComponent } from './Components/log-out/log-out.component';
+import { MatInputModule } from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,7 @@ import { LogOutComponent } from './Components/log-out/log-out.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,MatInputModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path: 'register', component: RegisterComponent },

@@ -20,7 +20,6 @@ export class LoginService {
       (`${environment.basicURL}api/account?loginCustomer.email=${login.email}&loginCustomer.password=${login.password}`)
   }
   register(newUser: register): Observable<boolean> {
-    debugger
     return this.http.post<boolean>(`${environment.basicURL}api/account`, newUser)
   }
 }

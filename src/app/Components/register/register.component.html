@@ -1,26 +1,40 @@
 <div style="padding: 20px;" class="login-box">
     <h2>Register <span (click)="goLogin()" class="link">login</span></h2>
-    <form  [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <div class="user-box">
-            <input type="text" formControlName="firstName" name="FirstName">
-            <label>First Name</label>
-        </div>
-        <div class="user-box">
-            <input type="text" formControlName="lastName" name="LastName">
-            <label>Last Name</label>
-        </div>
-        <div class="user-box">
-            <input type="text" formControlName="email" name="Email">
-            <label>Email</label>
-        </div>
-        <div class="user-box">
-            <input type="password" formControlName="password" name="Password">
-            <label>Password</label>
-        </div>
-        <div class="user-box">
-            <input type="password" formControlName="confirmPassword" name="confirmPassword">
-            <label>Password</label>
-        </div>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>First name</mat-label>
+            <input matInput formControlName="firstName">
+            <mat-error *ngIf="checkError('firstName', 'required')">first name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Last name</mat-label>
+            <input matInput formControlName="lastName">
+            <mat-error *ngIf="checkError('lastName', 'required')">last Name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="checkError('email', 'required')">email is required</mat-error>
+            <mat-error *ngIf="checkError('email', 'email')">Not valid email address</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password">
+            <mat-error *ngIf="checkError('password', 'required')">password is required</mat-error>
+            <mat-error *ngIf="checkError('password', 'minlength')">password must be at least 6 characters long</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Confirm password</mat-label>
+            <input matInput formControlName="confirmPassword">
+            <mat-error *ngIf="checkError('confirmPassword', 'required')">password is required</mat-error>
+            <mat-error *ngIf="checkError('confirmPassword', 'minlength')">password must be at least 6 characters long.</mat-error>
+        </mat-form-field>
+        <br>
         <button type="submit" [disabled]="!registerForm.valid">
             <span></span>
             <span></span>
@@ -28,7 +42,6 @@
             <span></span>
             Submit
         </button>
-
     </form>
     <span style="color: azure;">{{message}}</span>
 </div>

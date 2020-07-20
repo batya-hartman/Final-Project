@@ -9,13 +9,12 @@ import { Customer } from 'src/app/Models/customer';
 })
 export class AccountDetailsComponent implements OnInit {
 
-  constructor(private accuontDetailsService: AccuontDetailsService) { }
+  constructor(public accuontDetailsService: AccuontDetailsService) { }
   customer: Customer
   ngOnInit(): void {
     const accountId = sessionStorage.getItem('currentCustomer')
     this.accuontDetailsService.getCustomerAcount(accountId).subscribe(
       success => {
-        debugger
         this.accuontDetailsService.account = success
       },
       err => console.log(err)
