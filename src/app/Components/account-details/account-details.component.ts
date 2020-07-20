@@ -12,12 +12,10 @@ export class AccountDetailsComponent implements OnInit {
   constructor(private accuontDetailsService: AccuontDetailsService) { }
   customer: Customer
   ngOnInit(): void {
-    debugger
     const accountId = sessionStorage.getItem('currentCustomer')
     this.accuontDetailsService.getCustomerAcount(accountId).subscribe(
       success => {
-        this.customer = success
-        console.log(this.customer.openDate);
+        this.accuontDetailsService.account = success
       },
       err => console.log(err)
     )

@@ -10,12 +10,14 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './Components/register/register.component';
 import { AccountDetailsComponent } from './Components/account-details/account-details.component';
+import { LogOutComponent } from './Components/log-out/log-out.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    LogOutComponent
   ],
   imports: [
     BrowserModule,

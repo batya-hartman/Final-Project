@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Customer } from '../Models/customer';
 import { Observable } from 'rxjs';
 import { register } from '../Models/register';
 import { login } from '../Models/login';
@@ -18,10 +17,10 @@ export class LoginService {
     return
   }
     return this.http.get<number>
-      (`${environment.basicURL}/api/account?loginCustomer.email=${login.email}&loginCustomer.password=${login.password}`)
+      (`${environment.basicURL}api/account?loginCustomer.email=${login.email}&loginCustomer.password=${login.password}`)
   }
   register(newUser: register): Observable<boolean> {
     debugger
-    return this.http.post<boolean>(`${environment.basicURL}/api/account`, newUser)
+    return this.http.post<boolean>(`${environment.basicURL}api/account`, newUser)
   }
 }

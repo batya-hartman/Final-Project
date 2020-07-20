@@ -1,16 +1,13 @@
 <body *ngIf="customer" >
     <label>First Name</label>
-    {{customer?.firstName}}
+    {{accuontDetailsService.account.firstName}}
     <br>
     <label>Last Name</label>
-    {{customer?.lastName}}
-    <br>
-    <label>Email</label>
-    {{customer?.email}}
+    {{accuontDetailsService.account.lastName}}
     <br>
     <label>Open Date</label>
-    {{customer?.openDate}}
+    {{accuontDetailsService.account.opendate|date}}
     <br>
     <label>Balance</label>
-    {{customer?.balance}}
+    {{accuontDetailsService.account.balance}}
 </body>

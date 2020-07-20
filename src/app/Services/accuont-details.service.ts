@@ -7,11 +7,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AccuontDetailsService {
+  account: Customer;
+  constructor(private http: HttpClient) { }
 
-  constructor(private http:HttpClient) { }
-
-  getCustomerAcount(accountId:string):Observable<Customer>
-  {
-    return this.http.get<Customer>(`${environment.basicURL}/api/account/info?accountId=${accountId}`)
+  getCustomerAcount(accountId: string): Observable<Customer> {
+    return this.http.get<Customer>(`${environment.basicURL}api/account/info?accountId=${accountId}`)
+  }
+  removeCustomerDetails() {
+    this.account = undefined;
   }
 }
