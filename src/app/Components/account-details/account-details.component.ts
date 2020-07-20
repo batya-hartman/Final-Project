@@ -15,6 +15,7 @@ export class AccountDetailsComponent implements OnInit {
     const accountId = sessionStorage.getItem('currentCustomer')
     this.accuontDetailsService.getCustomerAcount(accountId).subscribe(
       success => {
+        debugger
         this.accuontDetailsService.account = success
       },
       err => console.log(err)
