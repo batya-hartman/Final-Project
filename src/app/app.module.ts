@@ -12,13 +12,17 @@ import { RegisterComponent } from './Components/register/register.component';
 import { AccountDetailsComponent } from './Components/account-details/account-details.component';
 import { LogOutComponent } from './Components/log-out/log-out.component';
 import { MatInputModule } from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import { MenuComponent } from './components/menu/menu.component';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     AccountDetailsComponent,
-    LogOutComponent
+    LogOutComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,9 @@ import { MatInputModule } from '@angular/material/input';
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       { path:'accountDetails',component: AccountDetailsComponent}
-      ])
+      ]),
+      MatCardModule,
+      MatIconModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]
