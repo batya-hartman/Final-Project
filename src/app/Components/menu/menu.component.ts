@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LogOutComponent } from '../log-out/log-out.component';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',

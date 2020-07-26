@@ -10,19 +10,22 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './Components/register/register.component';
 import { AccountDetailsComponent } from './Components/account-details/account-details.component';
-import { LogOutComponent } from './Components/log-out/log-out.component';
 import { MatInputModule } from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { MenuComponent } from './components/menu/menu.component';
 import {MatIconModule} from '@angular/material/icon';
+import { LogOutComponent } from './components/log-out/log-out.component';
+import {MatButtonModule} from '@angular/material/button';
+import { CreateTransactionComponent } from './Components/create-transaction/create-transaction.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
     AccountDetailsComponent,
+    MenuComponent,
     LogOutComponent,
-    MenuComponent
+    CreateTransactionComponent
   ],
   imports: [
     BrowserModule,
@@ -35,10 +38,12 @@ import {MatIconModule} from '@angular/material/icon';
       { path: '', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
-      { path:'accountDetails',component: AccountDetailsComponent}
+      { path:'accountDetails',component: AccountDetailsComponent},
+      { path:'transaction',component: CreateTransactionComponent}
       ]),
       MatCardModule,
-      MatIconModule
+      MatIconModule,
+      MatButtonModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AccuontDetailsService } from 'src/app/Services/accuont-details.service';
+import { AccuontDetailsService } from '../../Services/accuont-details.service';
 import { Router } from '@angular/router';
 
 @Component({

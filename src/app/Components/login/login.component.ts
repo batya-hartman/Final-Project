@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/Services/login.service';
-import { Customer } from '../../Models/customer';
+import { LoginService } from '../../Services/login.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { login } from 'src/app/Models/login';
+import { login } from '../../Models/login'
 
 @Component({
   selector: 'app-login',
@@ -11,7 +10,7 @@ import { login } from 'src/app/Models/login';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {//implements OnInit{
-  message: string = ""
+  message: string = "";
 
   constructor(
     private loginService: LoginService,
@@ -27,8 +26,8 @@ export class LoginComponent {//implements OnInit{
   
   onSubmit() {
     this.message = "Sending request...";
-    let current:login 
-    current= this.loginForm.value      
+    let current:login; 
+    current= this.loginForm.value  ;    
     this.loginService.login(current).subscribe(
       success => {
         this.message = "Login succeded",
