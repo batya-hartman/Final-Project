@@ -6,8 +6,8 @@
           <p>
               <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>To whom to transfer?</mat-label>
-                <input matInput formControlName="toAccount" >
-                <mat-error *ngIf="checkError('toAccount', 'required')">is required</mat-error>
+                <input matInput formControlName="toAccountId" >
+                <mat-error *ngIf="checkError('toAccountId', 'required')">is required</mat-error>
               
               </mat-form-field>
             </p>
@@ -22,10 +22,10 @@
             </p>   
            
           <button type="submit" [disabled]="!createTransactionForm.valid" >Transfer</button>
-         
+         <div style="color:rgb(83, 43, 226)">{{message}}</div>
         </form>
         </div>
       </div>
     
-    <span style="color: azure;">{{message}}</span>
+    
   </div>

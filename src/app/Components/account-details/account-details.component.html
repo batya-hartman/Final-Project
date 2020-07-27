@@ -10,8 +10,8 @@
     {{accuontDetailsService.account.opendate|date}}
     <br>
     <label>Balance</label>
-    {{accuontDetailsService.account.balance}}
-   
+    {{accuontDetailsService.account.balance/100}}
+   <button (click)="goCreateTransaction()">Do transaction</button>
 </div>
 
 

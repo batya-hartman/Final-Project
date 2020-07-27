@@ -9,25 +9,30 @@ import { transaction } from '../../Models/transaction';
   styleUrls: ['./create-transaction.component.css']
 })
 export class CreateTransactionComponent implements OnInit {
-transaction:transaction;
   message: string = "";
   value = 'Clear me';
+  tran: transaction;
   createTransactionForm = new FormGroup({
-    toAccount: new FormControl('', [Validators.required]),
-    amount: new FormControl('', [Validators.required,Validators.min(1),Validators.max(1000000)])
- });
-  constructor(private transactionService:TransactionService) { }
+    toAccountId: new FormControl('', [Validators.required]),
+    amount: new FormControl('', [Validators.required, Validators.min(1), Validators.max(1000000)])
+  });
+  constructor(private transactionService: TransactionService) { }
 
   ngOnInit(): void {
   }
-  onSubmit(){
-    // this.transaction.toAccountId=this.createTransactionForm.value.;
-    // this.transaction.amount=
-    this.transactionService.createTransaction(this.createTransactionForm.value).subscribe(
+  onSubmit() {
+    debugger
+    this.tran = new transaction(
+     sessionStorage.getItem("currentCustomer"),
+      this.createTransactionForm.value.toAccountId,
+      this.createTransactionForm.value.amount * 100
+    )
+
+    this.transactionService.createTransaction(this.tran).subscribe(
       success => {
         this.message = "Your transaction was successfully received!"
       },
-      error=>{
+      error => {
         this.message = "Your transaction failed :("
       }
     );

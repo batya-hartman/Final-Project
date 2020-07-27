@@ -35,8 +35,10 @@ export class LoginComponent {//implements OnInit{
           this.router.navigate(['/accountDetails'])
       }, 
       error => {
-        if(error.status===401||404){
-         this.message = "Your email or password are not correct, try again or go register."} 
+        if(error.status===401){
+         this.message = "Your email or password are not correct, try again or go register."}
+         else if(error.status===404)
+         this.message = "Your password are not correct."
          console.log(error)
         }
     )

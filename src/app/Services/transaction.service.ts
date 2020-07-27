@@ -11,6 +11,6 @@ export class TransactionService {
 
   constructor(private http:HttpClient) { }
   createTransaction(transaction:transaction): Observable<boolean> {
-    return this.http.post<boolean>(`${environment.basicURL}api/transaction`, transaction)
+    return this.http.post<boolean>(`${environment.transactionURL}api/transaction`, transaction)
   }
 }

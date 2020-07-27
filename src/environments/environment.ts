@@ -1,4 +1,5 @@
 export const environment = {
   production: false,
-  basicURL:"https://localhost:44313/"
+  accountURL:"https://localhost:44313/",
+  transactionURL:"https://localhost:44344/"
 };

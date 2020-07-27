@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccuontDetailsService } from 'src/app/Services/accuont-details.service';
 import { Customer } from 'src/app/Models/customer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-account-details',
@@ -9,7 +10,7 @@ import { Customer } from 'src/app/Models/customer';
 })
 export class AccountDetailsComponent implements OnInit {
 
-  constructor(public accuontDetailsService: AccuontDetailsService) { }
+  constructor(public accuontDetailsService: AccuontDetailsService,private router:Router) { }
   customer: Customer
   ngOnInit(): void {
     const accountId = sessionStorage.getItem('currentCustomer')
@@ -19,5 +20,9 @@ export class AccountDetailsComponent implements OnInit {
       },
       err => console.log(err)
     )
+  }
+  goCreateTransaction()
+  {
+this.router.navigate(["transaction"]);
   }
 }
