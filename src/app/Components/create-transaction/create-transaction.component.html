@@ -17,7 +17,7 @@
                 <input matInput formControlName="amount" >
                 <mat-error *ngIf="checkError('amount', 'required')">password is required</mat-error>
                 <mat-error *ngIf="checkError('amount', 'min')">amount must be at least 1$</mat-error>
-                <mat-error *ngIf="checkError('amount', 'max')">password mustn't be more then 1,000,000$</mat-error>
+                <mat-error *ngIf="checkError('amount', 'max')">password mustn't be less then 1,000,000$</mat-error>
               </mat-form-field>
             </p>   
            
