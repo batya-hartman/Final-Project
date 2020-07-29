@@ -18,7 +18,7 @@ export class OperationsHistoryComponent implements OnInit {
     private router: Router) { }
   displayedColumns: string[] = ['transactionId', 'isCredit', 'amount', 'balance', 'date'];
   operations: operation[];
-
+  panelOpenState = false;
   dataSource :MatTableDataSource<operation>;
   @Input() totalCount: number;
   @Output() onDeletelocation = new EventEmitter();
@@ -56,8 +56,24 @@ export class OperationsHistoryComponent implements OnInit {
 
   }
   onPageSwitch(event: PageEvent) {
-    debugger
+    debugger;
     this.paginationService.change(event);
+    this.getAllOperations();
+  }
+  onFilterType(type: string) {
+    debugger;
+    this.paginationService.pagination.type=type;
+    this.getAllOperations();
+  }
+ 
+  onFilterToDate(date: any) {
+    debugger;
+    this.paginationService.pagination.toDate=date.value;
+    this.getAllOperations();
+  }
+  onFilterFromDate(date:any) {
+    debugger;
+    this.paginationService.pagination.fromDate=date.value;
     this.getAllOperations();
   }
   getAllOperations() {

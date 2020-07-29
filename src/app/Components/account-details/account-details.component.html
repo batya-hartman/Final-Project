@@ -12,8 +12,8 @@
     <label>Balance</label>
     {{accuontDetailsService.account.balance/100}}
     <br>
-    <button (click)="goSeeOperations()">See your operations</button>
-    <button id="DoTransaction" (click)="goCreateTransaction()">Do transaction</button>
+    <button (click)="goSeeOperations()" mat-raised-button color="primary">See your operations</button>
+    <button id="DoTransaction" (click)="goCreateTransaction()" mat-raised-button color="primary">Do transaction</button>
 </div>
 
 

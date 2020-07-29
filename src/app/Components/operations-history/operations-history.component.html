@@ -2,54 +2,88 @@
 <!-- <div *ngIf="isLoading==false" > -->
 <form #pathTable="ngForm" ngNativeValidate>
   <div class="example-header" style=" margin-left: 3vw;">
-    <mat-form-field>
+    <!-- <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
+    </mat-form-field> -->
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Search
+          </mat-panel-title>
+          <mat-panel-description>
+            Click here for advanced search options
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-form-field class="example-full-width">
+          <mat-label>From Date</mat-label>
+          <input matInput type="date" #fronDate (change)="onFilterFromDate(fronDate)">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>To Date</mat-label>
+          <input matInput type="date" #toDate (change)="onFilterToDate(toDate)">
+        </mat-form-field>
+        <button mat-raised-button (click)="onFilterType('credit')">Credit</button>
+        <button mat-raised-button (click)="onFilterType('debit')">Debit</button>
+      </mat-expansion-panel>
+      <!-- <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Advanced search options
+          </mat-panel-title>
+          <mat-panel-description>
+            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>I'm visible because I am open</p>
+      </mat-expansion-panel> -->
+    </mat-accordion>
   </div>
 </form>
-  <div class="example-container mat-elevation-z8">
-    <mat-table #table matSort [dataSource]="dataSource">
-      <!-- transactionId Column -->
-      <ng-container matColumnDef="transactionId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Id </mat-header-cell>
-        <mat-cell *matCellDef="let element" (click)="getDetails(element.transactionId)">{{element.transactionId }}
-          <!-- <a [routerLink]="['/locations',element.id]"> </a> -->
-        </mat-cell>
-      </ng-container>
+<div class="example-container mat-elevation-z8">
+  <mat-table #table matSort [dataSource]="dataSource">
+    <!-- transactionId Column -->
+    <ng-container matColumnDef="transactionId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Id </mat-header-cell>
+      <mat-cell *matCellDef="let element" (click)="getDetails(element.transactionId)">{{element.transactionId }}
+        <!-- <a [routerLink]="['/locations',element.id]"> </a> -->
+      </mat-cell>
+    </ng-container>
 
-      <!-- isCredit Column -->
-      <ng-container matColumnDef="isCredit">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Credit/Debit</mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.isCredit }} </mat-cell>
-      </ng-container>
+    <!-- isCredit Column -->
+    <ng-container matColumnDef="isCredit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Credit/Debit</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.isCredit }} </mat-cell>
+    </ng-container>
 
-      <!-- amount Column-->
-      <ng-container matColumnDef="amount">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
-      </ng-container> 
+    <!-- amount Column-->
+    <ng-container matColumnDef="amount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+    </ng-container>
 
-      <!-- balance Column -->
-      <ng-container matColumnDef="balance">
-        <mat-header-cell *matHeaderCellDef> Balance </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.balance}} </mat-cell>
-      </ng-container>
+    <!-- balance Column -->
+    <ng-container matColumnDef="balance">
+      <mat-header-cell *matHeaderCellDef> Balance </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.balance}} </mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="date">
-        <mat-header-cell *matHeaderCellDef> date </mat-header-cell>
-        <mat-cell mat-cell *matCellDef="let element"> {{element.date|date}} </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="date">
+      <mat-header-cell *matHeaderCellDef> date </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element"> {{element.date|date}} </mat-cell>
+    </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 
-    <!-- <mat-paginator [pageSizeOptions]="[2,halfLength,locationsLength]" showFirstLastButtons></mat-paginator> -->
-  </div>
-  <!-- <div *ngIf="patientService.patientLocations"> -->
-  <div>
-    <mat-paginator [length]="totalCount" [pageSize]="paginationService.pageSize"
-      [pageSizeOptions]="this.paginationService.selectItemsPerPage" (page)="onPageSwitch($event)">
-    </mat-paginator>
-  </div>
-  <button (click)="goShowDetails()">Return back to account</button>   
+  <!-- <mat-paginator [pageSizeOptions]="[2,halfLength,locationsLength]" showFirstLastButtons></mat-paginator> -->
+</div>
+<!-- <div *ngIf="patientService.patientLocations"> -->
+<div>
+  <mat-paginator [length]="totalCount" [pageSize]="paginationService.pageSize"
+    [pageSizeOptions]="this.paginationService.selectItemsPerPage" (page)="onPageSwitch($event)">
+  </mat-paginator>
+</div>
+<button (click)="goShowDetails()" style="margin-left: 15vw;" mat-raised-button color="primary">Return back to account</button>

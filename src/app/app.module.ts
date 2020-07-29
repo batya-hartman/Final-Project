@@ -20,6 +20,8 @@ import { CreateTransactionComponent } from './Components/create-transaction/crea
 import { OperationsHistoryComponent } from './Components/operations-history/operations-history.component';
 import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatIconModule,
     MatButtonModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatExpansionModule,
+    MatSelectModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

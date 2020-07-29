@@ -14,6 +14,15 @@ export class PaginationService {
   get page(): number {
     return this.pagination.pageIndex;
   }
+  get toDate(): Date {
+    return this.pagination.toDate;
+  }
+  get fromDate(): Date {
+    return this.pagination.fromDate;
+  }
+  get type(): string {
+    return this.pagination.type;
+  }
   get selectItemsPerPage(): number[] {
     const total = this.pagination.allItemsLength
     if (total > 100) {
@@ -36,5 +45,7 @@ export class PaginationService {
     this.pagination.pageIndex = pageEvent.pageIndex + 1;
     this.pagination.pageSize = pageEvent.pageSize;
     this.pagination.allItemsLength = pageEvent.length;
+    
+
   }
 }
