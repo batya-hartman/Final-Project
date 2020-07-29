@@ -33,12 +33,14 @@ export class OperationsHistoryComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit() {
+    debugger
     this.operationService.getAll().subscribe(
       succsses => {
         debugger
         this.isLoading = false,
-          console.log(succsses),
+         
           this.operations = succsses.body.value,
+          console.log(this.operations),
           this.dataSource = new MatTableDataSource<operation>(this.operations);   
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;

@@ -11,6 +11,7 @@ export class CreateTransactionComponent implements OnInit {
   message: string = "";
   value = 'Clear me';
   tran: transaction;
+  submited:boolean=false;
   createTransactionForm = new FormGroup({
     toAccountId: new FormControl('', [Validators.required]),
     amount: new FormControl('', [Validators.required, Validators.min(1), Validators.max(1000000)])
@@ -20,6 +21,7 @@ export class CreateTransactionComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
+    this.submited=true;
     this.tran = new transaction(
       sessionStorage.getItem("currentCustomer"),
       this.createTransactionForm.value.toAccountId,

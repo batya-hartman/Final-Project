@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class OperationService {
   private headers = new HttpHeaders();
-  private endpoint = `/api/operations/page`;
+  private endpoint = `api/operationsHistory`;
   constructor(
     private http: HttpClient,
     private paginationService: PaginationService) {
@@ -16,9 +16,12 @@ export class OperationService {
     this.headers = this.headers.set('Accept', 'application/json');
   }
   getAll<T>(): Observable<any> {
-    debugger
+    debugger;
+    const accountId = sessionStorage.getItem('currentCustomer')
     const mergedUrl = `${environment.accountURL+this.endpoint}` +
-      `?page=${this.paginationService.page}&pageCount=${this.paginationService.pageSize}`;
+      `?accountid=${accountId}&Page=1&pageCount=${this.paginationService.pageSize}`;
+      // const mergedUrl = `${environment.accountURL+this.endpoint}` +
+      // `?accountid=${accountId}&Page=${this.paginationService.page}&pageCount=${this.paginationService.pageSize}`;
 
     return this.http.get(mergedUrl, { observe: 'response' });
   }
