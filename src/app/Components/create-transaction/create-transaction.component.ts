@@ -32,8 +32,8 @@ export class CreateTransactionComponent implements OnInit {
       },
       err => {
           this.message = "Your transaction failed :( ";
-      }
-    );}
+      });
+    }
     else
     this.message="Not Makes sense to transfer to yourself";
   }
