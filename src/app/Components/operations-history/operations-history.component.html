@@ -6,7 +6,7 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
   </div>
-
+</form>
   <div class="example-container mat-elevation-z8">
     <mat-table #table matSort [dataSource]="dataSource">
       <!-- transactionId Column -->
@@ -23,11 +23,11 @@
         <mat-cell *matCellDef="let element"> {{element.isCredit }} </mat-cell>
       </ng-container>
 
-      <!-- amount Column -->
-      <ng-container matColumnDef="city">
+      <!-- amount Column-->
+      <ng-container matColumnDef="amount">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
-      </ng-container>
+      </ng-container> 
 
       <!-- balance Column -->
       <ng-container matColumnDef="balance">
@@ -36,11 +36,9 @@
       </ng-container>
 
       <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef> date </th>
-        <td mat-cell *matCellDef="let element" > {{element.date}} </td>
+        <mat-header-cell *matHeaderCellDef> date </mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let element"> {{element.date|date}} </mat-cell>
       </ng-container>
-    
-
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
@@ -54,5 +52,4 @@
       [pageSizeOptions]="this.paginationService.selectItemsPerPage" (page)="onPageSwitch($event)">
     </mat-paginator>
   </div>
-   
-</form>
+  <button (click)="goShowDetails()">Return back to account</button>   

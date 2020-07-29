@@ -18,10 +18,8 @@ export class OperationService {
   getAll<T>(): Observable<any> {
     debugger;
     const accountId = sessionStorage.getItem('currentCustomer')
-    const mergedUrl = `${environment.accountURL+this.endpoint}` +
-      `?accountid=${accountId}&Page=1&pageCount=${this.paginationService.pageSize}`;
-      // const mergedUrl = `${environment.accountURL+this.endpoint}` +
-      // `?accountid=${accountId}&Page=${this.paginationService.page}&pageCount=${this.paginationService.pageSize}`;
+    const mergedUrl = `${environment.accountURL}${this.endpoint}?accountid=${accountId}&Page=1&pageCount=${this.paginationService.pageSize}`;
+  //const mergedUrl = `${environment.accountURL}&{this.endpoint}?accountid=${accountId}&Page=${this.paginationService.page}&pageCount=${this.paginationService.pageSize}`;
 
     return this.http.get(mergedUrl, { observe: 'response' });
   }

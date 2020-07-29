@@ -6,7 +6,6 @@ import { operation } from '../../Models/operation';
 import { PaginationService } from '../../Services/pagination.service';
 import { OperationService } from '../../Services/operation.service';
 import { Router } from '@angular/router';
-import { from } from 'rxjs';
 @Component({
   selector: 'app-operations-history',
   templateUrl: './operations-history.component.html',
@@ -17,10 +16,10 @@ export class OperationsHistoryComponent implements OnInit {
   constructor(public paginationService: PaginationService,
     private operationService: OperationService,
     private router: Router) { }
-  displayedColumns: string[] = ['transactionId', 'isCredit', 'amount', 'balance','date'];
-  operations:operation[];
-  
-  dataSource = new MatTableDataSource<operation>();
+  displayedColumns: string[] = ['transactionId', 'isCredit', 'amount', 'balance', 'date'];
+  operations: operation[];
+
+  dataSource :MatTableDataSource<operation>;
   @Input() totalCount: number;
   @Output() onDeletelocation = new EventEmitter();
   isLoading: boolean = true;
@@ -38,16 +37,14 @@ export class OperationsHistoryComponent implements OnInit {
       succsses => {
         debugger
         this.isLoading = false,
-         
+
           this.operations = succsses.body.value,
           console.log(this.operations),
-          this.dataSource = new MatTableDataSource<operation>(this.operations);   
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-                 //this.dataSource.paginator = this.paginator,
-          // this.halfLength = Math.floor(this.locations.length / 2),
-          // this.halfLength = Math.floor(this.locations.length / 2),
-          // this.locationsLength = this.locations.length
+          this.dataSource = new MatTableDataSource<operation>(this.operations);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        //this.dataSource.paginator = this.paginator,
+        
       },
       err => console.log(err));
   }
@@ -71,7 +68,10 @@ export class OperationsHistoryComponent implements OnInit {
       });
   }
   getDetails(id: number) {
-    this.router.navigate(['/locations', id]);
+    //should go to server
   }
-
+  goShowDetails()
+  {
+    this.router.navigate(['accountDetails']);
+  }
 }

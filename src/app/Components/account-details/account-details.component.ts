@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AccountDetailsComponent implements OnInit {
 
-  constructor(public accuontDetailsService: AccuontDetailsService,private router:Router) { }
+  constructor(public accuontDetailsService: AccuontDetailsService, private router: Router) { }
   customer: Customer
   ngOnInit(): void {
     const accountId = sessionStorage.getItem('currentCustomer');
@@ -21,8 +21,10 @@ export class AccountDetailsComponent implements OnInit {
       err => console.log(err)
     )
   }
-  goCreateTransaction()
-  {
-this.router.navigate(["transaction"]);
+  goCreateTransaction() {
+    this.router.navigate(["transaction"]);
+  }
+  goSeeOperations() {
+    this.router.navigate(["operations"]);
   }
 }

@@ -9,6 +9,10 @@ html {
   label {
     color: blue;
   }
+  button{
+    color: blue;
+    margin: 12px;
+  }
   .link{
     color:#5099eff2;
     text-decoration: underline;

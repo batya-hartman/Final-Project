@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TransactionService } from '../../Services/transaction.service';
 import { transaction } from '../../Models/transaction';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-transaction',
   templateUrl: './create-transaction.component.html',
@@ -16,7 +17,7 @@ export class CreateTransactionComponent implements OnInit {
     toAccountId: new FormControl('', [Validators.required]),
     amount: new FormControl('', [Validators.required, Validators.min(1), Validators.max(1000000)])
   });
-  constructor(private transactionService: TransactionService) { }
+  constructor(private transactionService: TransactionService,private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +30,8 @@ export class CreateTransactionComponent implements OnInit {
       if(this.tran.fromAccountId!==this.tran.toAccountId){
     this.transactionService.createTransaction(this.tran).subscribe(
       success => {
-        this.message = "Your transaction was successfully received!"
+        this.message = `Your transaction was successfully received!,
+        It may take a few minutes for the new data to appear in the account balance`
       },
       err => {
           this.message = "Your transaction failed :( ";
@@ -41,5 +43,9 @@ export class CreateTransactionComponent implements OnInit {
 
   public checkError = (controlName: string, errorName: string) => {
     return this.createTransactionForm.controls[controlName].hasError(errorName);
+  }
+  goShowDetails()
+  {
+    this.router.navigate(['accountDetails']);
   }
 }
