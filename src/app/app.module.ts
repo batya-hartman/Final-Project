@@ -11,12 +11,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './Components/register/register.component';
 import { AccountDetailsComponent } from './Components/account-details/account-details.component';
 import { MatInputModule } from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MenuComponent } from './components/menu/menu.component';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { LogOutComponent } from './components/log-out/log-out.component';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { CreateTransactionComponent } from './Components/create-transaction/create-transaction.component';
+import { OperationsHistoryComponent } from './Components/operations-history/operations-history.component';
+import { MatTableModule } from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +29,8 @@ import { CreateTransactionComponent } from './Components/create-transaction/crea
     AccountDetailsComponent,
     MenuComponent,
     LogOutComponent,
-    CreateTransactionComponent
+    CreateTransactionComponent,
+    OperationsHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -33,17 +38,21 @@ import { CreateTransactionComponent } from './Components/create-transaction/crea
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,MatInputModule,
+    BrowserAnimationsModule, MatInputModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
-      { path:'accountDetails',component: AccountDetailsComponent},
-      { path:'transaction',component: CreateTransactionComponent}
-      ]),
-      MatCardModule,
-      MatIconModule,
-      MatButtonModule
+      { path: 'accountDetails', component: AccountDetailsComponent },
+      { path: 'transaction', component: CreateTransactionComponent },
+      { path: 'operations', component: OperationsHistoryComponent }
+
+    ]),
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

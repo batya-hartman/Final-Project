@@ -1,0 +1,58 @@
+<div *ngIf="isLoading==true" class="loader"></div>
+<!-- <div *ngIf="isLoading==false" > -->
+<form #pathTable="ngForm" ngNativeValidate>
+  <div class="example-header" style=" margin-left: 3vw;">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+    <mat-table #table matSort [dataSource]="dataSource">
+      <!-- transactionId Column -->
+      <ng-container matColumnDef="transactionId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Id </mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="getDetails(element.transactionId)">{{element.transactionId }}
+          <!-- <a [routerLink]="['/locations',element.id]"> </a> -->
+        </mat-cell>
+      </ng-container>
+
+      <!-- isCredit Column -->
+      <ng-container matColumnDef="isCredit">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Credit/Debit</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.isCredit }} </mat-cell>
+      </ng-container>
+
+      <!-- amount Column -->
+      <ng-container matColumnDef="city">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.amount}} </mat-cell>
+      </ng-container>
+
+      <!-- balance Column -->
+      <ng-container matColumnDef="balance">
+        <mat-header-cell *matHeaderCellDef> Balance </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.balance}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> date </th>
+        <td mat-cell *matCellDef="let element" > {{element.date}} </td>
+      </ng-container>
+    
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <!-- <mat-paginator [pageSizeOptions]="[2,halfLength,locationsLength]" showFirstLastButtons></mat-paginator> -->
+  </div>
+  <!-- <div *ngIf="patientService.patientLocations"> -->
+  <div>
+    <mat-paginator [length]="totalCount" [pageSize]="paginationService.pageSize"
+      [pageSizeOptions]="this.paginationService.selectItemsPerPage" (page)="onPageSwitch($event)">
+    </mat-paginator>
+  </div>
+   
+</form>

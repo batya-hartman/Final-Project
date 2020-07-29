@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AccuontDetailsService } from 'src/app/Services/accuont-details.service';
-import { Customer } from 'src/app/Models/customer';
+import { AccuontDetailsService } from '../../Services/accuont-details.service';
+import { Customer } from '../../Models/customer';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ export class AccountDetailsComponent implements OnInit {
   constructor(public accuontDetailsService: AccuontDetailsService,private router:Router) { }
   customer: Customer
   ngOnInit(): void {
-    const accountId = sessionStorage.getItem('currentCustomer')
+    const accountId = sessionStorage.getItem('currentCustomer');
     this.accuontDetailsService.getCustomerAcount(accountId).subscribe(
       success => {
         this.accuontDetailsService.account = success
