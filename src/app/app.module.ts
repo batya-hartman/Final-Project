@@ -22,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
+import { VerificationEmailComponent } from './Components/register/verification-email/verification-email.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {MatSelectModule} from '@angular/material/select';
     MenuComponent,
     LogOutComponent,
     CreateTransactionComponent,
-    OperationsHistoryComponent
+    OperationsHistoryComponent,
+    VerificationEmailComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import {MatSelectModule} from '@angular/material/select';
       { path: 'login', component: LoginComponent },
       { path: 'accountDetails', component: AccountDetailsComponent },
       { path: 'transaction', component: CreateTransactionComponent },
-      { path: 'operations', component: OperationsHistoryComponent }
+      { path: 'operations', component: OperationsHistoryComponent },
+      { path:'verification',component: VerificationEmailComponent}
 
     ]),
     MatCardModule,

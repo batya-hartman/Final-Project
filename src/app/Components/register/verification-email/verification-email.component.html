@@ -1,0 +1,20 @@
+<div id="verificationBody">
+    <p class="pLarger">
+        To complete the registration process, we have sent a verification code to your email.
+    </p>
+    <p>Enter the code you received</p>
+    <form [formGroup]="VerificationForm" (ngSubmit)="onSubmit()">
+
+        <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>Verification Code</mat-label>
+            <input matInput formControlName="verificationCode">
+            <mat-error *ngIf="checkError('verificationCode', 'required')">verification code is required</mat-error>
+        </mat-form-field>
+        <i class="fa fa-repeat" id="reSend" title="send again"></i>
+<br>
+
+        <button type="submit" [disabled]="!VerificationForm.valid">
+            Submit
+        </button>
+    </form>
+</div>

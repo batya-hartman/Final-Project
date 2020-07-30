@@ -1,0 +1,15 @@
+#verificationBody{
+    padding-left: 20vw;
+    padding-top: 10vh;
+}
+p{
+    color: #2d68ea;
+   
+}
+.pLarger{
+    font-size: large;
+}
+#reSend{
+    margin-left: 2vw;
+    font-size: 4vh;
+}

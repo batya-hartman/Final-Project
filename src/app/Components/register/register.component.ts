@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators, FormBuilder, AbstractControl } from
 import { LoginService } from '../../Services/login.service';
 import { Router } from '@angular/router';
 import { register } from '../../Models/register';
+import { EmailService } from '../../Services/email.service';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,9 @@ export class RegisterComponent implements OnInit {
   message: string = ""
   registerForm: FormGroup;
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService,
+     private router: Router,
+     private emailService:EmailService) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -35,7 +38,7 @@ export class RegisterComponent implements OnInit {
       success => {
         if (success === true) {
           this.message = "Register succes!"
-          this.goLogin()
+          this.getVerificationPage(newCustomer.email)
         }
         else
           this.message = "Registration failed, this email is probably already owned by another user."
@@ -45,5 +48,9 @@ export class RegisterComponent implements OnInit {
   }
   goLogin() {
     this.router.navigate(['login']);
-  }
+  }getVerificationPage(email: string) {
+    
+    this.emailService.email=email;
+     this.router.navigate(['verification']);
+   }
 }

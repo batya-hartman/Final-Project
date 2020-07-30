@@ -19,7 +19,7 @@ export class OperationsHistoryComponent implements OnInit {
   displayedColumns: string[] = ['transactionId', 'isCredit', 'amount', 'balance', 'date'];
   operations: operation[];
   panelOpenState = false;
-  dataSource :MatTableDataSource<operation>;
+  dataSource: MatTableDataSource<operation>;
   @Input() totalCount: number;
   @Output() onDeletelocation = new EventEmitter();
   isLoading: boolean = true;
@@ -44,7 +44,7 @@ export class OperationsHistoryComponent implements OnInit {
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         //this.dataSource.paginator = this.paginator,
-        
+
       },
       err => console.log(err));
   }
@@ -62,18 +62,18 @@ export class OperationsHistoryComponent implements OnInit {
   }
   onFilterType(type: string) {
     debugger;
-    this.paginationService.pagination.type=type;
+    this.paginationService.pagination.type = type;
     this.getAllOperations();
   }
- 
+
   onFilterToDate(date: any) {
     debugger;
-    this.paginationService.pagination.toDate=date.value;
+    this.paginationService.pagination.toDate = date.value;
     this.getAllOperations();
   }
-  onFilterFromDate(date:any) {
+  onFilterFromDate(date: any) {
     debugger;
-    this.paginationService.pagination.fromDate=date.value;
+    this.paginationService.pagination.fromDate = date.value;
     this.getAllOperations();
   }
   getAllOperations() {
@@ -86,8 +86,7 @@ export class OperationsHistoryComponent implements OnInit {
   getDetails(id: number) {
     //should go to server
   }
-  goShowDetails()
-  {
+  goShowDetails() {
     this.router.navigate(['accountDetails']);
   }
 }
