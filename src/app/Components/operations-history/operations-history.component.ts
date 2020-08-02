@@ -32,47 +32,37 @@ export class OperationsHistoryComponent implements OnInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
 
   ngOnInit() {
-    debugger
     this.operationService.getAll().subscribe(
       succsses => {
-        debugger
-        this.isLoading = false,
-
+          this.isLoading = false,
           this.operations = succsses.body.value,
           console.log(this.operations),
           this.dataSource = new MatTableDataSource<operation>(this.operations);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
-        //this.dataSource.paginator = this.paginator,
-
       },
       err => console.log(err));
   }
   applyFilter(filterValue: string) {
-    debugger;
     filterValue = filterValue.trim(); // Remove whitespace    
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches    
     this.dataSource.filter = filterValue;
 
   }
   onPageSwitch(event: PageEvent) {
-    debugger;
     this.paginationService.change(event);
     this.getAllOperations();
   }
   onFilterType(type: string) {
-    debugger;
     this.paginationService.pagination.type = type;
     this.getAllOperations();
   }
 
   onFilterToDate(date: any) {
-    debugger;
     this.paginationService.pagination.toDate = date.value;
     this.getAllOperations();
   }
   onFilterFromDate(date: any) {
-    debugger;
     this.paginationService.pagination.fromDate = date.value;
     this.getAllOperations();
   }
@@ -84,7 +74,7 @@ export class OperationsHistoryComponent implements OnInit {
       });
   }
   getDetails(id: number) {
-    //should go to server
+     ///this.
   }
   goShowDetails() {
     this.router.navigate(['accountDetails']);

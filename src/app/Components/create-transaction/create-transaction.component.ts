@@ -22,12 +22,18 @@ export class CreateTransactionComponent implements OnInit {
   ngOnInit(): void {
   }
   onSubmit() {
-    this.submited=true;
+    this.submited = true;
     this.tran = new transaction(
       sessionStorage.getItem("currentCustomer"),
       this.createTransactionForm.value.toAccountId,
       this.createTransactionForm.value.amount * 100)
-      if(this.tran.fromAccountId!==this.tran.toAccountId){
+
+      if(this.tran.fromAccountId===this.tran.toAccountId){
+        
+        this.message="Not Makes sense to transfer to yourself";
+      }
+       else
+       {
     this.transactionService.createTransaction(this.tran).subscribe(
       success => {
         this.message = `Your transaction was successfully received!,
@@ -37,8 +43,6 @@ export class CreateTransactionComponent implements OnInit {
           this.message = "Your transaction failed :( ";
       });
     }
-    else
-    this.message="Not Makes sense to transfer to yourself";
   }
 
   public checkError = (controlName: string, errorName: string) => {

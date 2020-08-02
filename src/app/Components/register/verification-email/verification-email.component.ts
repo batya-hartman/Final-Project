@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { EmailService } from '../../../Services/email.service';
-import { EmailVerification } from '../../../Models/EmailVerification'
+import { LoginService } from 'src/app/Services/login.service';
+import { register } from 'src/app/Models/register';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-verification-email',
   templateUrl: './verification-email.component.html',
@@ -10,25 +12,55 @@ import { EmailVerification } from '../../../Models/EmailVerification'
 export class VerificationEmailComponent implements OnInit {
 
   VerificationForm = new FormGroup({
-    verificationCode: new FormControl('', [Validators.required])
+    code: new FormControl('', [Validators.required, Validators.min(1000), Validators.max(9999)])
   })
 
-  constructor(private emailSevice: EmailService) { }
-
+  constructor(private router: Router,
+    private loginService: LoginService,
+    private emailService: EmailService) { }
+  message: string
   ngOnInit(): void {
   }
   public checkError = (controlName: string, errorName: string) => {
     return this.VerificationForm.controls[controlName].hasError(errorName);
   }
   onSubmit() {
-  
-    const verificatioEmailDelails = {} as EmailVerification;
-    // verificatioEmailDelails.email = this.emailSevice.email;
-    verificatioEmailDelails.email="cyehudit10@gmail.com";
-    const code=this.VerificationForm.value.verificationCode;
-    verificatioEmailDelails.verificationCode = code; 
-     debugger;
-    this.emailSevice.sendVerificationEmail(verificatioEmailDelails).subscribe();
+    this.message = "Sending request...";
+    console.log(this.VerificationForm.value.code);
+    let newUser = new register();
+    newUser.firstName = sessionStorage.getItem('first');
+    newUser.lastName = sessionStorage.getItem('last');
+    newUser.password = sessionStorage.getItem('password');
+    newUser.email = sessionStorage.getItem('email');
+    newUser.verificationCode = this.VerificationForm.value.code
+    this.loginService.register(newUser).subscribe(
+      success => {
+        if (success === true) {
+          this.message = "Register succes!"
+        }
+        else
+          this.message = "Registration failed, this email is probably already owned by another user."
+      },
+      error => this.registerFailed(error)
+    )
+  }
+  registerFailed(err)
+  {
+    console.log(err);
+    if (err.status==401) {
+        this.message=err.error.error
+    }
+    else
+     this.message = "Try again"
+  }
+  reSend() {
+    this.emailService.reSendVerificationEmail(sessionStorage.getItem('email')).subscribe(
+      sucsses => this.message = "A new password has been sent to you",
+      err => this.message = "we are sorry, something went wrong."
+    )
+  }
+  goLogin() {
+    this.router.navigate(['login']);
   }
 }
 

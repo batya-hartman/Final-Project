@@ -36,9 +36,11 @@ export class LoginComponent {//implements OnInit{
       }, 
       error => {
         if(error.status===401){
-         this.message = "Your email or password are not correct, try again or go register."}
+         this.message = "Your email is not exist"}
          else if(error.status===404)
-         this.message = "Your password are not correct."
+         this.message = "Your email is not exist"
+         else 
+         this.message= "There was a problem, Please try again"
          console.log(error)
         }
     )

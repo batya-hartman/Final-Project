@@ -1,5 +1,9 @@
 import { login } from './login'
-export interface register extends login {
-    firstName: string,
-    lastName: string,
+export class register implements login {
+    
+    public email: string;
+    public password: string;
+    public firstName: string;
+    public lastName: string;
+    public verificationCode: number;
 }

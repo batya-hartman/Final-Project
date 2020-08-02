@@ -7,13 +7,14 @@ import { EmailVerification } from '../Models/EmailVerification';
   providedIn: 'root'
 })
 export class EmailService {
-  email: string = "";
   constructor(private http: HttpClient) { }
-  sendVerificationEmail(verificatioEmailDelails: EmailVerification) {
-    debugger;
 
-    return this.http.post<boolean>
-      (`${environment.accountURL}api/email/verification`, verificatioEmailDelails)
+  sendVerificationEmail(email: string) {
+    return this.http.get<boolean>
+      (`${environment.accountURL}api/verification/verification?email=${email}`)
   }
-
+  reSendVerificationEmail(email:string)
+  {
+    return this.http.get(`${environment.accountURL}api/verification/resend?email=${email}`)
+  }
 }

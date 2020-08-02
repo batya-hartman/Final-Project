@@ -7,14 +7,18 @@
 
         <mat-form-field appearance="outline" class="example-full-width">
             <mat-label>Verification Code</mat-label>
-            <input matInput formControlName="verificationCode">
-            <mat-error *ngIf="checkError('verificationCode', 'required')">verification code is required</mat-error>
+            <input matInput formControlName="code">
+            <mat-error *ngIf="checkError('code', 'required')">verification code is required</mat-error>
         </mat-form-field>
-        <i class="fa fa-repeat" id="reSend" title="send again"></i>
-<br>
-
+        <button (click)='reSend()'>
+            <i class="fa fa-repeat" id="reSend" title="send again"></i>
+        </button>
+        <br>
         <button type="submit" [disabled]="!VerificationForm.valid">
             Submit
         </button>
     </form>
+    <div>{{message}}</div>
+    <br>
+    <button (click)="goLogin()" mat-raised-button color="primary">Go to login</button>
 </div>

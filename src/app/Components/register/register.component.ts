@@ -4,6 +4,7 @@ import { LoginService } from '../../Services/login.service';
 import { Router } from '@angular/router';
 import { register } from '../../Models/register';
 import { EmailService } from '../../Services/email.service';
+import { EmailVerification } from 'src/app/Models/EmailVerification';
 
 @Component({
   selector: 'app-register',
@@ -14,10 +15,9 @@ export class RegisterComponent implements OnInit {
 
   message: string = ""
   registerForm: FormGroup;
-
+  showVerification = false;
   constructor(private loginService: LoginService,
-     private router: Router,
-     private emailService:EmailService) { }
+    private router: Router, private emailService: EmailService) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -30,27 +30,18 @@ export class RegisterComponent implements OnInit {
   public checkError = (controlName: string, errorName: string) => {
     return this.registerForm.controls[controlName].hasError(errorName);
   }
-
-  onSubmit() {
-    const newCustomer: register = this.registerForm.value
-    this.message = "Sending request...";
-    this.loginService.register(newCustomer).subscribe(
-      success => {
-        if (success === true) {
-          this.message = "Register succes!"
-          this.getVerificationPage(newCustomer.email)
-        }
-        else
-          this.message = "Registration failed, this email is probably already owned by another user."
-      },
-      error => { console.log(error), this.message = "Try again" }
-    )
-  }
   goLogin() {
     this.router.navigate(['login']);
-  }getVerificationPage(email: string) {
+  }
+  onSubmit() {
+    const newCustomer: register = this.registerForm.value
     
-    this.emailService.email=email;
-     this.router.navigate(['verification']);
-   }
+    sessionStorage.setItem('first', newCustomer.firstName);
+    sessionStorage.setItem('last', newCustomer.lastName);
+    sessionStorage.setItem('email', newCustomer.email);
+    sessionStorage.setItem('password', newCustomer.password);
+
+    this.emailService.sendVerificationEmail(newCustomer.email).subscribe();
+    this.router.navigate(['verification'])
+  }
 }
