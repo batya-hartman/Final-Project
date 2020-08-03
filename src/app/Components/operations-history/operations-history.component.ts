@@ -27,6 +27,8 @@ export class OperationsHistoryComponent implements OnInit {
   operationssLength: number;
   pageSizeOptions: [];
   index: number;
+  single=false;
+  selected:operation;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -55,16 +57,16 @@ export class OperationsHistoryComponent implements OnInit {
   }
   onFilterType(type: string) {
     this.paginationService.pagination.type = type;
-    this.getAllOperations();
+   // this.getAllOperations();
   }
 
-  onFilterToDate(date: any) {
+  onFilterToDate(date: any) {    
     this.paginationService.pagination.toDate = date.value;
-    this.getAllOperations();
+    //this.getAllOperations();
   }
   onFilterFromDate(date: any) {
     this.paginationService.pagination.fromDate = date.value;
-    this.getAllOperations();
+   // this.getAllOperations();
   }
   getAllOperations() {
     this.operationService.getAll()
@@ -74,7 +76,13 @@ export class OperationsHistoryComponent implements OnInit {
       });
   }
   getDetails(id: number) {
-     ///this.
+     this.operationService.getSingle(id).subscribe(
+      (succsess:any)=>       
+       {
+          this.single=true;
+          this.selected=succsess.body.value
+       }
+     )
   }
   goShowDetails() {
     this.router.navigate(['accountDetails']);

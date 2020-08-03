@@ -1,32 +1,29 @@
 <div class="login-box">
-    <h2>Create New Transaction </h2>
-    <div style="margin-left:20px;">
-      <div class="example-container">
-        <form [formGroup]="createTransactionForm"  (ngSubmit)="onSubmit()" class="example-form">
-          <p>
-              <mat-form-field appearance="outline" class="example-full-width">
-                <mat-label>To whom to transfer?</mat-label>
-                <input matInput formControlName="toAccountId" >
-                <mat-error *ngIf="checkError('toAccountId', 'required')">is required</mat-error>
-              
-              </mat-form-field>
-            </p>
-            <p>
-              <mat-form-field appearance="outline" class="example-full-width">
-                <mat-label>How much money to transfer?</mat-label>
-                <input matInput formControlName="amount" >
-                <mat-error *ngIf="checkError('amount', 'required')">password is required</mat-error>
-                <mat-error *ngIf="checkError('amount', 'min')">amount must be at least 1$</mat-error>
-                <mat-error *ngIf="checkError('amount', 'max')">amount mustn't be less then 1,000,000$</mat-error>
-              </mat-form-field>
-            </p>   
-           
-          <button type="submit" [disabled]="!createTransactionForm.valid || submited" >Transfer</button>
-         <div style="color:rgb(96, 78, 161);margin-top: 3vh">{{message}}</div>
-        </form>
-        <button (click)="goShowDetails()">Return back to account</button>
-        </div>
-      </div>
-    
-    
+  <h2>Create New Transaction </h2>
+  <div style="margin-left:20px;">
+    <div class="example-container">
+      <form [formGroup]="createTransactionForm" (ngSubmit)="onSubmit()" class="example-form">
+        <p>
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>To whom to transfer?</mat-label>
+            <input matInput formControlName="toAccountId">
+            <mat-error *ngIf="checkError('toAccountId', 'required')">is required</mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label>How much money to transfer?</mat-label>
+            <input matInput formControlName="amount">
+            <mat-error *ngIf="checkError('amount', 'required')">password is required</mat-error>
+            <mat-error *ngIf="checkError('amount', 'min')">amount must be at least 1$</mat-error>
+            <mat-error *ngIf="checkError('amount', 'max')">amount mustn't be less then 1,000,000$</mat-error>
+          </mat-form-field>
+        </p>
+
+        <button type="submit" [disabled]="!createTransactionForm.valid || submited">Transfer</button>
+        <button (click)="goShowDetails()" style="margin-left:10px ;">Return back to account</button>
+        <div style="color:rgb(96, 78, 161);margin-top: 3vh">{{message}}</div>
+      </form>
+    </div>
   </div>
+</div>

@@ -3,7 +3,7 @@ export class Pagination {
   pageSize = this.selectItemsPerPage[0];
   pageIndex = 1;
   allItemsLength = 20;
-  fromDate:Date=new Date("01/01/0001");
-  toDate:Date=new Date(Date.now()) ;
+  fromDate:Date;
+  toDate:Date;
   type:string="";
 }

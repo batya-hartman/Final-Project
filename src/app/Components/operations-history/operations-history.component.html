@@ -17,7 +17,7 @@
         </mat-expansion-panel-header>
         <mat-form-field class="example-full-width">
           <mat-label>From Date</mat-label>
-          <input matInput type="date" #fronDate (change)="onFilterFromDate(fronDate)">
+          <input matInput type="date" #fromDate (change)="onFilterFromDate(fromDate)">
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label>To Date</mat-label>
@@ -25,6 +25,7 @@
         </mat-form-field>
         <button mat-raised-button (click)="onFilterType('credit')">Credit</button>
         <button mat-raised-button (click)="onFilterType('debit')">Debit</button>
+       <button mat-raised-button (click)="getAllOperations()" mat-raised-button color="primary">Send</button>
       </mat-expansion-panel>
       <!-- <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
@@ -47,7 +48,6 @@
     <ng-container matColumnDef="transactionId">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Id </mat-header-cell>
       <mat-cell *matCellDef="let element" (click)="getDetails(element.transactionId)">{{element.transactionId }}
-        <!-- <a [routerLink]="['/locations',element.id]"> </a> -->
       </mat-cell>
     </ng-container>
 
@@ -77,13 +77,14 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-
-  <!-- <mat-paginator [pageSizeOptions]="[2,halfLength,locationsLength]" showFirstLastButtons></mat-paginator> -->
 </div>
-<!-- <div *ngIf="patientService.patientLocations"> -->
 <div>
   <mat-paginator [length]="totalCount" [pageSize]="paginationService.pageSize"
     [pageSizeOptions]="this.paginationService.selectItemsPerPage" (page)="onPageSwitch($event)">
   </mat-paginator>
+<div *ngIf="single">
+{{selected}}
 </div>
-<button (click)="goShowDetails()" style="margin-left: 15vw;" mat-raised-button color="primary">Return back to account</button>
+<button (click)="goShowDetails()" style="margin-left: 15vw;" mat-raised-button color="primary">
+  Return back to account</button>
+</div>

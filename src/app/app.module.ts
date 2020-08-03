@@ -23,7 +23,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatSelectModule} from '@angular/material/select';
 import { VerificationEmailComponent } from './Components/register/verification-email/verification-email.component';
-
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +61,7 @@ import { VerificationEmailComponent } from './Components/register/verification-e
     MatExpansionModule,
     MatSelectModule
   ],
-  providers: [LoginService],
+  providers: [LoginService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
